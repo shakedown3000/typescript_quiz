@@ -37,7 +37,8 @@ h1 {
   margin-bottom: 20px;
   font-size: 18px;
 }
-.answer_button {
+.answer_button,
+#startButton {
   margin-top: 20px;
   width: 100%;
   background-color: #ff66b2;

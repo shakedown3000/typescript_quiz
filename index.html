@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="./src/assets/favicon-16x16.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
@@ -18,8 +18,10 @@
       <div class="card">
         <div class="question">Start your Quiz</div>
         <div class="answer_selection"></div>
-        <!-- <button class="answer_button">Antwort anzeigen</button> -->
-        <div id="answer">Antwort</div>
+        <!-- Soll verschwinden beim Starten -->
+        <button id="startButton">Click to Start</button>
+        <div id="answer"></div>
+        <div id="nextQuestionDiv"></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
