@@ -37,6 +37,7 @@ function fetchQuizzes() {
     });
 }
 
+// const scoreArray: number [] = [];
 fetchQuizzes();
 let currentQuizIndex = 0;
 
