@@ -37,11 +37,14 @@ function fetchQuizzes() {
     });
 }
 
-// const scoreArray: number [] = [];
+const scoreArray: number[] = [];
 fetchQuizzes();
 let currentQuizIndex = 0;
 
 function showQuestion() {
+  const score = document.createElement("div");
+  score.innerHTML = `Your score: ${scoreArray.length.toString()}`;
+
   if (questionElement && answerSelection && quizzes.length > 0) {
     questionElement.textContent = "";
     const currentQuestion = quizzes[currentQuizIndex]; // Index fängt bei 0 an also erste Frage
@@ -60,15 +63,16 @@ function showQuestion() {
         return buttonValue;
       });
       answerSelection.appendChild(newButton);
+      answerElement.appendChild(score);
     });
   }
 
-  if (answerButton) {
-    answerButton.textContent = "Show answer";
-    answerButton.addEventListener("click", () => {
-      console.log("Answer button clicked");
-    });
-  }
+  // if (answerButton) {
+  //   answerButton.textContent = "Show answer";
+  //   answerButton.addEventListener("click", () => {
+  //     console.log("Answer button clicked");
+  //   });
+  // }
 }
 
 function showAnswer(buttonValue: string): void {
@@ -85,6 +89,7 @@ function showAnswer(buttonValue: string): void {
           if (buttonNumber === quiz.correct) {
             console.log("Your answer is correct!");
             answerElement.textContent = `Your answer is correct! 🏆`;
+            scoreArray.push(1);
           } else {
             console.log("Your answer is wrong");
             answerElement.textContent = `Your answer is wrong. The correct answer is "${
