@@ -69,13 +69,13 @@ h1 {
   transition: background-color 0.3s;
 }
 .answerSelectionButton:hover {
-  background-color: #ff99cc;
+  background-color: #ffbdbd;
 }
 
 .correct {
-  background-color: #4caf50 !important;
+  background-color: #68c4af !important;
 }
 
 .incorrect {
-  background-color: #f44336 !important;
+  background-color: #ffd3b6 !important;
 }

@@ -14,6 +14,7 @@ const startButton = document.getElementById("startButton") as HTMLButtonElement;
 const nextQuestionDiv = document.getElementById(
   "nextQuestionDiv"
 ) as HTMLDivElement;
+const score = document.getElementById("score_div") as HTMLDivElement;
 
 // Englisch einfach
 const BASEURL =
@@ -21,7 +22,8 @@ const BASEURL =
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchQuizzes();
-  if (startButton) {
+  if (startButton && score) {
+    score.style.display = "none";
     startButton.style.display = "block";
     startButton.addEventListener("click", () => {
       if (quizzes.length > 0) {
@@ -64,20 +66,23 @@ function showQuestion() {
     console.error("Keine Quizdaten verfügbar");
     return;
   }
-  // Score muss noch woanders platziert werden
-  const score = document.createElement("div");
-  score.innerHTML = `Your score: ${scoreArray.length.toString()}`;
   if (questionElement && answerSelection && quizzes.length > 0) {
+    if (score) {
+      score.style.display = "block";
+      score.innerHTML = `Your score: ${scoreArray.length.toString()}`;
+    }
     // Frage
     questionElement.textContent = "";
     const currentQuestion = quizzes[currentQuizIndex]; // Index fängt bei 0 an also erste Frage
     questionElement.textContent = currentQuestion.question;
     console.log(currentQuestion.question);
+    // Leert die alten Fragen
     answerElement.textContent = "";
     answerSelection.textContent = "";
     currentQuestion.answers.forEach((answer: string, index: number) => {
       const newButton = document.createElement("button");
       newButton.classList.add("answerSelectionButton");
+      // Jeder Button bekommt einen Value Index
       const buttonValue = (newButton.value = `${index}`);
       newButton.textContent = `${index + 1}. ${answer}`;
       newButton.addEventListener("click", () => {
@@ -87,7 +92,6 @@ function showQuestion() {
         return buttonValue;
       });
       answerSelection.appendChild(newButton);
-      answerElement.appendChild(score);
     });
   }
 }
@@ -111,24 +115,27 @@ function showAnswer(buttonValue: string): void {
         const buttonNumber = Number(buttonValue);
         if (index === quiz.correct) {
           button.classList.add("correct");
+          button.innerHTML += " ✅";
           if (buttonNumber === quiz.correct) {
             console.log("Your answer is correct!");
             answerElement.textContent = `Your answer is correct! 🏆`;
             scoreArray.push(1);
+            score.innerHTML = `Your score: ${scoreArray.length.toString()}`;
             if (nextQuestionDiv) {
               nextQuestionDiv.appendChild(nextQuestionButton);
             }
           } else {
             console.log("Your answer is wrong");
-            answerElement.textContent = `Your answer is wrong. The correct answer is "${
-              index + 1
-            }. ${quiz.answers[quiz.correct]}"`;
+            answerElement.innerHTML = `Your answer is wrong 😔.`;
             if (nextQuestionDiv) {
               answerElement.appendChild(nextQuestionButton);
             }
           }
         } else {
           button.classList.add("incorrect");
+          if (buttonNumber === index) {
+            button.innerHTML += " ❌";
+          }
         }
       });
     }
@@ -141,7 +148,7 @@ function nextQuestion() {
     showQuestion();
     nextQuestionButton.remove();
   } else {
-    alert("Quiz completed!");
+    alert(`Quiz completed! Your score is ${scoreArray.length.toString()}`);
     nextQuestionButton.remove();
   }
 }
