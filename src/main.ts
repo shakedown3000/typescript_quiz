@@ -3,9 +3,9 @@ import { Quiz } from "./contracts/quiz";
 
 const questionElement = document.querySelector(".question") as HTMLDivElement;
 // Button verschwindet nach dem Start
-const answerButton = document.querySelector(
-  ".answer_button"
-) as HTMLButtonElement;
+// const answerButton = document.querySelector(
+//   ".answer_button"
+// ) as HTMLButtonElement;
 const answerElement = document.getElementById("answer") as HTMLDivElement;
 const answerSelection = document.querySelector(
   ".answer_selection"
@@ -16,7 +16,6 @@ const nextQuestionDiv = document.getElementById(
 ) as HTMLDivElement;
 const score = document.getElementById("score_div") as HTMLDivElement;
 
-// Englisch einfach
 const BASEURL =
   "https://vz-wd-24-01.github.io/typescript-quiz/questions/easy.json";
 
