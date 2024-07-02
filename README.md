@@ -14,7 +14,7 @@ Welcome to the TypeScript Quiz! This web application allows you to test your kno
 
 ## Screenshot
 
-![Screenshot](assets/Screenshot_Typescript_Quiz.png)
+![Screenshot](src/assets/Screenshot_Typescript_Quiz.png)
 
 ## Demo
 
